@@ -13,6 +13,14 @@
             box-sizing: border-box;
         }
 
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+        }
+
         body {
             font-family: 'Press Start 2P', cursive;
             background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
@@ -20,33 +28,32 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
         }
 
         .game-container {
             position: relative;
             background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 70%, #90EE90 100%);
-            border: 8px solid #333;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-            border-radius: 8px;
+            width: 100vw;
+            height: 90vh;
         }
 
         #gameCanvas {
             display: block;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
+            width: 100%;
+            height: 100%;
         }
 
         .ui-overlay {
             position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
+            top: 10px;
+            left: 10px;
+            right: 10px;
             display: flex;
             justify-content: space-between;
             color: white;
-            font-size: 14px;
+            font-size: 10px;
             text-shadow: 3px 3px 0 #000;
             pointer-events: none;
             z-index: 10;
@@ -59,19 +66,22 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.9);
-            padding: 3%;
+            padding: 15px;
             border-radius: 12px;
             border: 4px solid #FFD700;
             text-align: center;
             color: white;
             display: none;
             z-index: 100;
+            width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
         }
 
         .game-over-screen h2,
         .win-screen h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 14px;
+            margin-bottom: 10px;
             color: #FF6B6B;
         }
 
@@ -81,20 +91,20 @@
 
         .game-over-screen p,
         .win-screen p {
-            font-size: 12px;
-            margin: 15px 0;
+            font-size: 10px;
+            margin: 10px 0;
         }
 
         button {
             font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
-            padding: 15px 30px;
+            font-size: 10px;
+            padding: 10px 20px;
             background: #4CAF50;
             color: white;
             border: 4px solid #2E7D32;
             border-radius: 8px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
             transition: all 0.2s;
         }
 
@@ -108,22 +118,7 @@
         }
 
         .instructions {
-            position: absolute;
-            bottom: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.95);
-            padding: 20px 40px;
-            border-radius: 12px;
-            border: 4px solid #333;
-            font-size: 10px;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .instructions span {
-            color: #FF6B6B;
-            font-weight: bold;
+            display: none;
         }
 
         @keyframes float {
@@ -157,70 +152,71 @@
         }
 
         .character-selection h2 {
-            font-size: 28px;
+            font-size: 16px;
             color: #FFD700;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             text-shadow: 3px 3px 0 #000;
         }
 
         .character-options {
             display: flex;
-            gap: 60px;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .character-card {
             background: rgba(255, 255, 255, 0.1);
             border: 4px solid #FFD700;
             border-radius: 12px;
-            padding: 30px;
+            padding: 20px;
             cursor: pointer;
             transition: all 0.3s;
             text-align: center;
         }
 
-        .character-card:hover {
-            transform: scale(1.1);
+        .character-card:active {
+            transform: scale(0.95);
             border-color: #FFF;
             background: rgba(255, 255, 255, 0.2);
         }
 
         .character-card img {
-            width: 128px;
-            height: 128px;
+            width: 100px;
+            height: 100px;
             image-rendering: pixelated;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 8px;
             padding: 10px;
         }
 
         .character-card h3 {
-            font-size: 16px;
+            font-size: 14px;
             color: white;
             text-shadow: 2px 2px 0 #000;
         }
 
         .character-portrait {
             position: absolute;
-            top: 60px;
-            left: 20px;
+            top: 50px;
+            left: 10px;
             background: rgba(0, 0, 0, 0.7);
             border: 4px solid #FFD700;
             border-radius: 8px;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
         }
 
         .character-portrait img {
-            width: 64px;
-            height: 64px;
+            width: 48px;
+            height: 48px;
             image-rendering: pixelated;
             display: block;
             margin-bottom: 5px;
         }
 
         .character-portrait p {
-            font-size: 8px;
+            font-size: 6px;
             color: white;
             text-shadow: 2px 2px 0 #000;
             margin: 0;
@@ -228,56 +224,56 @@
 
         .game-over-screen img,
         .win-screen img {
-            width: 290px;
-            height: 380px;
+            width: 35vw;
+            height: auto;
+            max-width: 120px;
+            max-height: 160px;
             image-rendering: pixelated;
-            margin-bottom: 20px;
-            padding: 3%;
+            margin-bottom: 10px;
+            padding: 2%;
         }
 
-        .game-over-div {
-            display: flex;
-            justify-content: space-between;
-        }
-
+        .game-over-div,
         .win-div {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .mobile-controls {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 0;
             right: 0;
-            display: none;
+            display: flex;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 15px;
             z-index: 50;
             pointer-events: none;
         }
 
         .control-left {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .control-right {
             display: flex;
-            gap: 10px;
+            gap: 8px;
         }
 
         .control-btn {
             pointer-events: all;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: rgba(255, 255, 255, 0.3);
             border: 3px solid rgba(255, 255, 255, 0.8);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             user-select: none;
@@ -290,8 +286,8 @@
         }
 
         .jump-btn {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: rgba(255, 215, 0, 0.3);
             border-color: rgba(255, 215, 0, 0.8);
         }
@@ -300,27 +296,125 @@
             background: rgba(255, 215, 0, 0.5);
         }
 
-        /* Detectar dispositivos móviles */
-        @media (max-width: 768px),
-        (hover: none) {
-            .mobile-controls {
-                display: flex;
+        /* Desktop/Tablet - Mayor a 768px */
+        @media (min-width: 1080px) {
+            .game-container {
+                width: 800px;
+                height: 450px;
+                border: 8px solid #333;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+                border-radius: 8px;
             }
 
-            .instructions {
+            .ui-overlay {
+                top: 20px;
+                left: 20px;
+                right: 20px;
+                font-size: 14px;
+            }
+
+            .character-selection h2 {
+                font-size: 28px;
+                margin-bottom: 50px;
+            }
+
+            .character-options {
+                flex-direction: row;
+                gap: 60px;
+            }
+
+            .character-card {
+                padding: 30px;
+            }
+
+            .character-card:hover {
+                transform: scale(1.1);
+                border-color: #FFF;
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .character-card img {
+                width: 128px;
+                height: 128px;
+                margin-bottom: 20px;
+            }
+
+            .character-card h3 {
+                font-size: 16px;
+            }
+
+            .character-portrait {
+                top: 60px;
+                left: 20px;
+                padding: 10px;
+            }
+
+            .character-portrait img {
+                width: 64px;
+                height: 64px;
+            }
+
+            .character-portrait p {
+                font-size: 8px;
+            }
+
+            .game-over-screen,
+            .win-screen {
+                width: auto;
+                padding: 40px;
+                max-height: none;
+            }
+
+            .game-over-screen h2,
+            .win-screen h2 {
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            .game-over-screen p,
+            .win-screen p {
+                font-size: 12px;
+                margin: 15px 0;
+            }
+
+            .game-over-screen img,
+            .win-screen img {
+                width: 290px;
+                height: 380px;
+                max-width: none;
+                max-height: none;
+                padding: 3%;
+                margin-bottom: 20px;
+            }
+
+            button {
+                font-size: 12px;
+                padding: 15px 30px;
+                margin-top: 20px;
+            }
+
+            .mobile-controls {
                 display: none;
             }
 
-            .game-container {
-                width: 100vw;
-                height: 100vh;
-                border: none;
-                border-radius: 0;
+            .instructions {
+                display: block;
+                position: absolute;
+                bottom: -80px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.95);
+                padding: 20px 40px;
+                border-radius: 12px;
+                border: 4px solid #333;
+                font-size: 10px;
+                color: #333;
+                white-space: nowrap;
             }
 
-            #gameCanvas {
-                width: 100%;
-                height: 100%;
+            .instructions span {
+                color: #FF6B6B;
+                font-weight: bold;
             }
         }
     </style>
