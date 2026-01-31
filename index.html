@@ -298,7 +298,7 @@
         }
 
         /* Desktop/Tablet - Mayor a 768px */
-        @media (min-width: 769px) {
+        @media (min-width: 769px) and (orientation: landscape) {
             .game-container {
                 width: 800px;
                 height: 450px;
@@ -420,7 +420,7 @@
         }
 
         /* Landscape en móvil */
-        @media (max-width: 2500px) and (orientation: landscape) {
+        /* @media (max-width: 2500px)  {
             .game-container {
                 width: 100vw;
                 height: 100vh;
@@ -523,15 +523,8 @@
                 padding: 8px 16px;
                 margin-top: 8px;
             }
-        }
+        } */
 
-        /* Para resoluciones muy altas (como 2310px) */
-        @media (min-width: 1920px) {
-            .game-container {
-                width: 1200px;
-                height: 675px;
-            }
-        }
     </style>
 </head>
 
