@@ -297,6 +297,13 @@
             background: rgba(255, 215, 0, 0.5);
         }
 
+        .game-over-data,
+        .win-data {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
         /* Desktop/Tablet - Mayor a 768px */
         @media (min-width: 769px) and (orientation: landscape) {
             .game-container {
@@ -524,7 +531,6 @@
                 margin-top: 8px;
             }
         } */
-
     </style>
 </head>
 
@@ -567,9 +573,11 @@
                 <img id="gameOverAImg" src="./ALs.jpeg" alt="Game Over">
                 <img id="gameOverImg" src="" alt="Game Over">
             </div>
-            <h2>GAME OVER!</h2>
-            <p>Puntaje: <span id="finalScore">0</span></p>
-            <button onclick="restartGame()">Intenta de nuevo</button>
+            <div class="game-over-data">
+                <h2>GAME OVER!</h2>
+                <p>Puntaje: <span id="finalScore">0</span></p>
+                <button onclick="restartGame()">Intenta de nuevo</button>
+            </div>
         </div>
 
         <div class="win-screen" id="winScreen">
@@ -577,10 +585,12 @@
                 <img id="winImg" src="" alt="You Win">
                 <img id="winAImg" src="./AW.jpeg" alt="You Win">
             </div>
-            <h2>Ganaste!</h2>
-            <p>Felicitaciones!</p>
-            <p>Puntaje Final: <span id="winScore">0</span></p>
-            <button onclick="restartGame()">Jugar de nuevo</button>
+            <div class="win-data">
+                <h2>Ganaste!</h2>
+                <p>Felicitaciones!</p>
+                <p>Puntaje Final: <span id="winScore">0</span></p>
+                <button onclick="restartGame()">Jugar de nuevo</button>
+            </div>
         </div>
 
         <div class="instructions">
@@ -1176,7 +1186,8 @@
             if (selectedCharacter) {
                 document.getElementById('gameOverImg').src = selectedCharacter.loseSrc;
             }
-            document.getElementById('gameOverScreen').style.display = 'block';
+            document.getElementById('gameOverScreen').style.display = 'flex';
+            document.getElementById('gameOverScreen').style.justifyContent = 'space-around';
         }
 
         function winGame() {
@@ -1185,7 +1196,8 @@
             if (selectedCharacter) {
                 document.getElementById('winImg').src = selectedCharacter.winSrc;
             }
-            document.getElementById('winScreen').style.display = 'block';
+            document.getElementById('winScreen').style.display = 'flex';
+            document.getElementById('winScreen').style.justifyContent = 'space-around';
         }
 
         function restartGame() {
