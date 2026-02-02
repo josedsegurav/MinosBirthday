@@ -368,7 +368,8 @@
 
             .game-over-screen,
             .win-screen {
-                width: auto;
+                flex-direction: column;
+                width: 60vw;
                 padding: 40px;
                 max-height: none;
             }
@@ -423,6 +424,14 @@
             .instructions span {
                 color: #FF6B6B;
                 font-weight: bold;
+            }
+
+            .game-over-data,
+            .win-data {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
         }
 
